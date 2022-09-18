@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./scprits/clinica.js"></script>
+    <title>clinica de caes de assistencias</title>
+</head>
+
+<body>
+    <h1>cadastre já</h1>
+    <form action="cadastro">
+        <fieldset>
+            <legend>dados do cliente</legend>
+            <label for="nome">nome</label>
+            <input type="text" id="nome" name="nome">
+            <br>
+            <label for="email">E-mail</label>
+            <input type="text" id="email" name="email">
+            <br>
+            <label for="idade">idade</label>
+            <input type="number" id="idade" name="idade">
+                <br>
+                <label for="telefone">telefone</label>
+                <input type="text" id="telefone" name="telefone">
+                <br>
+                <label for="cep">cep</label>
+                <input type="text" id="cep" name="cep">
+                <br>
+                <label for="numero">numero</label>
+                <input type="text" id="numero" name="numero">
+                <br>
+        </fieldset>
+        <fieldset>
+            <legend>tipos de assistencias assistida por cães</legend>
+            <input type="checkbox" id="depressao" name="depressao">
+            <label for="depressao">tratamento de depressão</label>
+            <br>
+            <input type="checkbox" id="autismo" name="autismo">
+            <label for="autismo">tratamento de autismo</label>
+            <br>
+            <input type="checkbox" id="cancer" name="cancer">
+            <label for="cancer">tratamento do cancer</label>
+            <br>
+            <input type="checkbox" id="ala_infantil" name="ala_infantil">
+            <label for="ala_infantil">ala para infantil</label>
+            <br>
+            <input type="checkbox" id="ala_adulto" name="ala_adulto">
+            <label for="ala_adulto">ala para adulto</label>
+            <br>
+            <input type="checkbox" id="cao_guia" name="cao_guia">
+            <label for="cao_guia">cão guia</label>
+            <br>
+            <input type="checkbox" id="sindromes" name="sindromes">
+            <label for="sindromes">sindromes em geral</label>
+            <br>
+            <label for="local">local</label>
+            <select name="local" id="local">
+                <option value="domicilio"> Á Domicilio</option>
+                <option value="clinica"> Clinica</option>
+            </select>
+            <br>
+        </fieldset>
+        <button type="button" id="btn_salvar" onclick="salvar()">salvar</button>
+    </form>
+    <a href="./lista.html">clientes cadastrado</a>
+
+</body>
+
+</html>
