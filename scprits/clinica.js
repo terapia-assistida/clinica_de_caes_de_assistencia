@@ -1,8 +1,35 @@
 let clientes = JSON.parse(localStorage.getItem('clientes'))
-
 if (clientes == null){
     clientes =[]
 }
+const indice =location.search.split('=')[1]
+const formEdicao = indice !== undefined
+if(formEdicao){
+    preencheformulario(indice)
+}
+
+ function preencheformulario(indice){
+    console.log('preenchendo formulario do cliente:' + indice)
+    let cliente = clientes[indice]
+    console.log('cliente:' + cliente.nome)
+    document.getElementById('nome').value = cliente.nome
+    document.getElementById('email').value = cliente.email
+    document.getElementById('idade').value = cliente.idade
+    document.getElementById('telefone').value = cliente.telefone
+    document.getElementById('cep').value = cliente.cep
+    document.getElementById('numero').value = cliente.numero
+    document.getElementById('depressao').checked = cliente.depressao
+    document.getElementById('autismo').checked = cliente .autismo
+    document.getElementById('cancer').checked = cliente.cancer
+    document.getElementById('ala_infantil').checked = cliente.ala_infantil
+    document.getElementById('ala_adulto').checked = cliente.ala_adulto
+    document.getElementById('cao_guia').checked = cliente.cao_guia
+    document.getElementById('sindromes').checked = cliente.sindromes
+    document.getElementById('local').value = cliente. local
+
+ }
+
+
 
 function salvar(){
     let nome = document.getElementById('nome').value
@@ -37,7 +64,12 @@ function salvar(){
         sindromes:sindromes,
         local:local,
     }
-    clientes.push(paciente)
+
+    if(formEdicao){
+        clientes[indice] = paciente
+    }else{
+        clientes.push(paciente)
+    }
 
     localStorage.setItem("clientes",JSON.stringify(clientes))
 }
