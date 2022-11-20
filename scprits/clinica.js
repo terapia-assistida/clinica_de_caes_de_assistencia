@@ -46,7 +46,21 @@ function salvar(){
     let cao_guia = document.getElementById('cao_guia').checked
     let sindromes = document.getElementById('sindromes').checked
     let local = document.getElementById('local').value
-    
+
+    if (nome === undefined || nome === null || nome ===''){
+        document.getElementById('erro-nome').classList.remove('fade')
+        setTimeout(()=>{
+            document.getElementById('erro-nome').classList.add('fade')
+        },1500 )
+        return
+    }
+    if (email === undefined || email === null || email ===''){
+        document.getElementById('erro-email').classList.remove('fade')
+        setTimeout(()=>{
+            document.getElementById('erro-email').classList.add('fade')
+        },1500 )
+        return
+    }
 
     let paciente = {
         nome:nome,
@@ -72,4 +86,27 @@ function salvar(){
     }
 
     localStorage.setItem("clientes",JSON.stringify(clientes))
+
+    document.getElementById('sucesso').classList.remove('fade')
+    setTimeout(()=>{
+        document.getElementById('sucesso').classList.add('fade')
+    },1500 )
+
+    limpaformulario()
 }
+  function limpaformulario(){
+    document.getElementById('nome').value = ''
+    document.getElementById('email').value = ''
+    document.getElementById('idade').value = ''
+    document.getElementById('telefone').value =''
+    document.getElementById('cep').value =''
+    document.getElementById('numero').value =''
+    document.getElementById('depressao').checked = false
+    document.getElementById('autismo').checked = false 
+    document.getElementById('cancer').checked = false
+    document.getElementById('ala_infantil').checked = false
+    document.getElementById('ala_adulto').checked = false
+    document.getElementById('cao_guia').checked = false
+    document.getElementById('sindromes').checked = false
+    document.getElementById('local').value = ''
+  }
