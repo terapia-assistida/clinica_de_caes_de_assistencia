@@ -1,16 +1,20 @@
-let clientes = JSON.parse(localStorage.getItem('clientes'))
-if (clientes == null){
-    clientes =[]
-}
-const indice =location.search.split('=')[1]
-const formEdicao = indice !== undefined
+const urlApi = 'http://ntcursoapi-env.eba-hvwnzgx7.us-east-1.elasticbeanstalk.com/nt-curso-api/terapia/clientes/'
+
+const id =location.search.split('=')[1]
+const formEdicao = id !== undefined
 if(formEdicao){
-    preencheformulario(indice)
+    fetch(urlApi + id).then(function (resposta){
+        console.log('encontrado aluno com id' + id)
+        return resposta.json()
+    })
+    .then(function(cliente){
+        preencheformulario(cliente)
+
+    })
 }
 
- function preencheformulario(indice){
-    console.log('preenchendo formulario do cliente:' + indice)
-    let cliente = clientes[indice]
+ function preencheformulario(cliente){
+    console.log('preenchendo formulario do cliente:' + cliente.id)
     console.log('cliente:' + cliente.nome)
     document.getElementById('nome').value = cliente.nome
     document.getElementById('email').value = cliente.email
@@ -78,14 +82,24 @@ function salvar(){
         sindromes:sindromes,
         local:local,
     }
-
+    let metodo
     if(formEdicao){
-        clientes[indice] = paciente
+       metodo = 'PUT'
+       paciente.id=id
     }else{
-        clientes.push(paciente)
+        metodo = "post"
     }
 
-    localStorage.setItem("clientes",JSON.stringify(clientes))
+    fetch(urlApi,{
+        method:metodo,
+        headers:{ 'content-type':'application/json'},
+        body: JSON.stringify(paciente)
+    })
+      .then(
+        function(resposta){
+            console.log('salvo com sucesso',resposta)
+        }
+      )
 
     document.getElementById('sucesso').classList.remove('fade')
     setTimeout(()=>{
